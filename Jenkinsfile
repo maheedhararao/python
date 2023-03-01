@@ -3,9 +3,16 @@ pipeline{
 	stages{
 		stage('Build'){
 			steps{
-				cd /home/remlab/Desktop/demo/python
-				python example.py
+				sh''' cd /var/lib/jenkins/workspace
+				echo "hello world"
+				pwd'''
 			}
 		}
 	}
 }
+
+
+
+
+
+
