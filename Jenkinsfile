@@ -2,8 +2,10 @@ pipeline{
 	agent any
 	stages{
 		stage('Build'){
-			cd /home/remlab/Desktop/demo/python
-			python example.py
+			steps{
+				cd /home/remlab/Desktop/demo/python
+				python example.py
+			}
 		}
 	}
 }
