@@ -6,6 +6,7 @@ pipeline{
 				sh''' cd /var/lib/jenkins/workspace
 				echo "hello world"
 				pwd'''
+				sh'env | sort'
 			}
 		}
 	}
