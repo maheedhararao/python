@@ -6,8 +6,8 @@ pipeline{
 		stage('Build'){
 			steps{
 				sh''' cd $WORKSPACE
-				sudo apt-get update
-				sudo apt install python2
+				apt-get update
+				apt install python2
 				python -V
 				python build_image.py
 				echo "hello world"
