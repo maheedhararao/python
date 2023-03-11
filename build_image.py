@@ -2,7 +2,7 @@ import os, time
 
 images_before = os.popen("sudo docker images").read().strip().split("\n")[1:]
 print(images_before)
-os.popen("sudo docker build -t ubuntu:v1 /home/remlab/demo")
+os.popen("sudo docker build -t ubuntu:v1 /home/remlab/demo/Dockerfile")
 time.sleep(5)
 images_after = os.popen("sudo docker images").read().strip().split('\n')[1:]
 print(images_after)
