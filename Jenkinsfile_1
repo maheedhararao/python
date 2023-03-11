@@ -1,27 +1,21 @@
-pipeline{
+pipeline {
 	agent {
-	    dockerfile {
-	    	filename 'Dockerfile_1'
-	    }
+		docker {
+			image 'python:2-alpine'
+		}
 	}
-	stages{
-		stage('Build'){
-			steps{
-				sh''' cd $WORKSPACE
-				apt-get update
-				apt install python2
-				python -V
+	stages {
+		stage('Build') {
+			steps {
+				sh '''
+				cd $WORKSPACE
+				python - V
 				python build_image.py
 				echo "hello world"
 				hostname
-				pwd'''
+				pwd '''
+				
 			}
 		}
 	}
 }
-
-
-
-
-
-
