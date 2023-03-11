@@ -10,7 +10,7 @@ pipeline {
 				sh '''
 				cd $WORKSPACE
 				python -V
-				python build_image.py
+				python example.py
 				echo "hello world"
 				hostname
 				pwd '''
