@@ -1,1 +1,26 @@
-
+pipeline {
+	agent {
+		docker {
+    alwaysPull true
+    args '--network host'
+    image 'ubuntu'
+    reuseNode false
+  }
+	}
+	stages {
+		stage('Build') {
+			steps {
+				sh '''
+				cd $WORKSPACE
+        apt-get update
+        apt install python2
+				python -V
+				python example.py
+				echo "hello world"
+				hostname
+				pwd '''
+				
+			}
+		}
+	}
+}
