@@ -9,8 +9,8 @@ pipeline {
 			steps {
 				sh '''
 				cd $WORKSPACE
-				python -V
-				python example.py
+				python2 -V
+				python2 example.py
 				echo "hello world"
 				hostname
 				pwd 
