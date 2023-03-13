@@ -13,7 +13,8 @@ pipeline {
 				python example.py
 				echo "hello world"
 				hostname
-				pwd '''
+				pwd 
+				ls'''
 				
 			}
 		}
