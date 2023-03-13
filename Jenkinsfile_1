@@ -20,10 +20,10 @@ pipeline {
 	}
 	post {
 		success {
-			git checkout main
+			sh ''' git checkout main
 			git checkout integrate -- example.py
 			git commit -m "Pushig file from integrate to main."
-			git push origin main
+			git push origin main'''
 		}
 	}
 }
