@@ -24,6 +24,7 @@ pipeline {
 			withCredentials([gitUsernamePassword(credentialsId: 'maheedhar',
                  gitToolName: 'git-tool')]) {
 				sh '''
+				echo GIT_BRANCH
 				git branch -a
 				git checkout main
 				git checkout integrate -- example.py
