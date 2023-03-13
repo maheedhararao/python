@@ -23,8 +23,7 @@ pipeline {
 		success {
 			withCredentials([gitUsernamePassword(credentialsId: 'maheedhar',
                  gitToolName: 'git-tool')]) {
-				sh ''' 
-				cd python
+				sh '''
 				git checkout main
 				git checkout integrate -- example.py
 				git commit -m "Pushig file from integrate to main."
