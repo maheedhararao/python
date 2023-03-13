@@ -21,16 +21,16 @@ pipeline {
 	}
 	post {
 		success {
-			withCredentials([gitUsernamePassword(credentialsId: 'maheedhar',
-                 gitToolName: 'git-tool')]) {
-				sh '''
-				echo $GIT_BRANCH
-				git branch -a
-				git checkout main
-				git checkout $GIT_BRANCH -- example.py
-				git commit -m "Pushig file from $GIT_BRANCH to main."
-				git push origin main'''
-			}
+			sh '''
+			git config user.name $username
+			git config user.email $usermail
+			echo $GIT_BRANCH
+			git branch -a
+			git checkout main
+			git checkout $GIT_BRANCH -- example.py
+			git commit -m "Pushig file from $GIT_BRANCH to main."
+			git push origin main'''
+			
 		}
 	}
 }
