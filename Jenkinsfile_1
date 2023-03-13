@@ -21,7 +21,7 @@ pipeline {
 	post {
 		success {
 			sh ''' 
-			cd docker-job
+			cd python
 			git checkout main
 			git checkout integrate -- example.py
 			git commit -m "Pushig file from integrate to main."
