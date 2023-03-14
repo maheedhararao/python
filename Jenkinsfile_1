@@ -30,7 +30,7 @@ pipeline {
 			git fetch origin
 			git checkout main
 			git merge origin/integrate
-			git push https://${username}:${password}@$url'''
+			git push https://${password}@$url'''
 			
 		}}
 	}
