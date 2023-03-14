@@ -29,7 +29,7 @@ pipeline {
 			echo $GIT_BRANCH
 			git branch -a
 			git checkout origin/integrate
-			git commit -m "pushing file from integrate to master" python/examply.py
+			git commit -m "pushing file from integrate to master" example.py
 			git push https://${username}:${password}@$url'''
 			
 		}}
