@@ -1,0 +1,5 @@
+From ubuntu:latest
+
+Run apt-get update
+RUN apt-get install -y python2
+CMD ['echo', 'Image created']
