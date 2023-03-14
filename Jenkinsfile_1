@@ -21,7 +21,7 @@ pipeline {
 	}
 	post {
 		success {
-			withCredentials([usernamePassword(credentialsId: 'maheedhar', passwordVariable: 'password', usernameVariable: 'username')]){
+			withCredentials([gitUsernamePassword(credentialsId: 'maheedhar', gitToolName: 'git-tool')]) {
 			sh '''
 			export https_proxy="http://proxy-chain.intel.com:912"
 			git config user.name $username
@@ -30,7 +30,8 @@ pipeline {
 			git fetch origin
 			git checkout main
 			git merge origin/integrate
-			git push https://${password}@$url'''
+			git push origin main
+			'''
 			
 		}}
 	}
