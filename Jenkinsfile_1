@@ -25,7 +25,7 @@ pipeline {
 			sh '''
 			git config user.name $username
 			git config user.email $usermail
-			git config --global http.proxy http://proxy-chain.intel.com:911
+			export http_proxy="http://proxy-chain.intel.com:911"
 			echo $GIT_BRANCH
 			git branch -a
 			git checkout main
