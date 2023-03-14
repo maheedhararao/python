@@ -29,8 +29,8 @@ pipeline {
 			echo $GIT_BRANCH
 			git branch -a
 			git checkout main
-			git checkout $GIT_BRANCH -- example.py
-			git commit -m "Pushig file from $GIT_BRANCH to main."
+			git pull origin integrate
+			git status
 			git push https://${username}:${password}@$url'''
 			
 		}}
