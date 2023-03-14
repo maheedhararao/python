@@ -21,6 +21,7 @@ pipeline {
 	}
 	post {
 		success {
+			withCredentials([usernamePassword(credentialsId: 'maheedhar', passwordVariable: 'password', usernameVariable: 'username')]){
 			sh '''
 			git config user.name $username
 			git config user.email $usermail
@@ -29,8 +30,8 @@ pipeline {
 			git checkout main
 			git checkout $GIT_BRANCH -- example.py
 			git commit -m "Pushig file from $GIT_BRANCH to main."
-			git push origin main'''
+			git push https://${username}:${password}@$url'''
 			
-		}
+		}}
 	}
 }
