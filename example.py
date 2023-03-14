@@ -1,5 +1,4 @@
 for i in range(1, 11):
-	print(i)
-print("jenkins poc")	
+	print(i)	
 
 #print("##########")	
