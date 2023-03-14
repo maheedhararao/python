@@ -28,10 +28,8 @@ pipeline {
 			git config user.email $usermail
 			echo $GIT_BRANCH
 			git branch -a
-			git checkout main
-			git checkout origin/integrate -- example.py
-			git status
-			git commit -m "pushing file from integrate to master"
+			git checkout origin/integrate
+			git commit -m "pushing file from integrate to master" examply.py
 			git push https://${username}:${password}@$url'''
 			
 		}}
