@@ -21,7 +21,7 @@ pipeline {
 	}
 	post {
 		success {
-			
+			withCredentials([usernamePassword(credentialsId: 'maheedhar_git_token', passwordVariable: 'password', usernameVariable: 'username')]) {
 			sh '''
 			export https_proxy="http://proxy-chain.intel.com:912"
 			git config user.name $username
@@ -32,7 +32,7 @@ pipeline {
 			git merge origin/integrate
 			git push https://${username}:${password}@$url
 			'''
-			
+			}
 		}
 	}
 }
