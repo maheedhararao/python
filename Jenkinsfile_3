@@ -1,0 +1,16 @@
+pipeline{
+	agent {
+		docker {
+			image 'ubuntu:v1_m'
+		}
+	}
+	stages{
+		stage('Build'){
+			steps{
+				sh''' cd /var/lib/jenkins/workspace
+				python2 multi_job.py
+				pwd'''
+			}
+		}
+	}
+}
