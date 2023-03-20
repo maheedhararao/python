@@ -1,0 +1,32 @@
+pipeline{
+	agent {
+		docker {
+			image 'ubuntu:v1_m'
+		}
+	}
+	stages{
+		stage('Build'){
+			steps{
+				sh''' cd $WORKSPACE && ls
+				python2 multi_job.py
+				pwd'''
+			}
+		}
+	}
+	post {
+		success {
+			withCredentials([usernamePassword(credentialsId: 'maheedhar_git_token', passwordVariable: 'password', usernameVariable: 'username')]) {
+			sh '''
+			export https_proxy="http://proxy-chain.intel.com:912"
+			git config user.name $username
+			git config user.email $usermail
+			echo $GIT_BRANCH
+			git fetch origin
+			git checkout main
+			git merge origin/$GIT_BRANCH
+			git push https://${username}:${password}@$url
+			'''
+			}
+		}
+	}
+}

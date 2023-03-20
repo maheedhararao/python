@@ -7,3 +7,7 @@ os.popen("hostname")
 print('Running job2 on local branch2')
 os.popen('hostname')
 
+
+print('Running job3 on branch3')
+os.popen('hostname')
+
