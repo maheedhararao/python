@@ -16,6 +16,7 @@ pipeline {
 					withCredentials([usernamePassword(credentialsId: 'maheedhar_git_token', passwordVariable: 'password', usernameVariable: 'username')]) {
 					sh '''
 					cd $WORKSPACE
+					export https_proxy="http://proxy-chain.intel.com:912"
 					git fetch origin
 					git checkout main
 					git merge origin/local1
