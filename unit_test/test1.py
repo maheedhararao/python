@@ -24,3 +24,4 @@ class Test1(unittest.TestCase):
         self.assertEqual(s.split(), ['hello', 'world'])
         with self.assertRaises(TypeError):
             s.split(2)
+print('maheedhar')
