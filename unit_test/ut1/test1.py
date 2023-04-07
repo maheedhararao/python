@@ -16,6 +16,7 @@ class Test1(unittest.TestCase):
     # else returns False.
     def test_isupper(self):
         print('Running test from Test1')
+        print('testing')
         self.assertTrue('FOO'.isupper())
         self.assertFalse('Foo'.isupper())
 
