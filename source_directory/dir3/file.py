@@ -1,2 +1,2 @@
 print 'This is source directory'
-prit 'testing1'
+print 'testing1'
