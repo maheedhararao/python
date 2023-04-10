@@ -1,0 +1,12 @@
+{
+  "source_directories": [
+    "dir1",
+    "dir2",
+    "dir3"
+  ],
+  "test_directories": {
+    "dir1": "ut1",
+    "dir2": "ut1",
+    "dir3": "ut2"
+  }
+}
