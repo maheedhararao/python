@@ -26,7 +26,7 @@ def trigger_tests():
         sys.exit()
 
     path = os.getcwd()
-    test_files_path = path + '\\test_files.json'
+    test_files_path = path + '//test_files.json'
     f = open(test_files_path)
     data = json.load(f)
     print(data)
@@ -36,12 +36,12 @@ def trigger_tests():
             unit_test_folders_to_run.append(data['test_directories']['{}'.format(dir)])
     print unit_test_folders_to_run
 
-    unit_test_path = os.getcwd() + "\\unit_test\\"
+    unit_test_path = os.getcwd() + "//unit_test//"
     cmd = 'python ' + unit_test_path
     for test_dir in unit_test_folders_to_run:
         files = os.listdir(unit_test_path+test_dir)
         for each in files:
-            output = subprocess.check_output(cmd + test_dir + '\\' + each, shell=True)
+            output = subprocess.check_output(cmd + test_dir + '//' + each, shell=True)
             print(output)
 
 
