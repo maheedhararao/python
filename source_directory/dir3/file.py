@@ -1,1 +1,1 @@
-print 'This is source dir'
+print 'This is source directory'
