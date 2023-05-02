@@ -1,17 +1,13 @@
-import unittest
+import pytest
 
 
-class Test3(unittest.TestCase):
-    # Returns True if the string contains 4 a.
-    def test_strings_a(self):
-        print('Running test from Test3')
-        self.assertEqual('a' * 4, 'aaaa')
-
-    # Returns True if the string is in upper case.
-    def test_upper(self):
-        print('Running test from Test3')
-        self.assertEqual('foo'.upper(), 'FOO')
+@pytest.mark.file_3
+def test_1():
+    print 'testing the changes done to source dir'
+    print 'testing first test from test_3 file in ut2'
 
 
-if __name__ == "__main__":
-    unittest.main()
+@pytest.mark.file_3
+def test_2():
+    print 'testing the changes done to source dir'
+    print 'testing second test from test_3 file in ut2'
