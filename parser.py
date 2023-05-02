@@ -48,12 +48,12 @@ def trigger_tests():
 
     print(unit_test_folders_to_run)
 
-    unit_test_path = os.getcwd() + "\\unit_test\\"
+    unit_test_path = os.getcwd() + "/unit_test/"
     print unit_test_path
 
     for key in unit_test_folders_to_run.keys():
         for each in unit_test_folders_to_run[key]:
-            cmd = 'pytest ' + unit_test_path + key + '\\' + ' -s -m {}'.format(each)
+            cmd = 'pytest ' + unit_test_path + key + '/' + ' -s -m {}'.format(each)
             print cmd
             time.sleep(4)
             subprocess.Popen(args=cmd, shell=True).communicate()
