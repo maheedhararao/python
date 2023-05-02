@@ -6,10 +6,12 @@ import requests, os, json, subprocess, sys
 def commit_details():
     proxies = {'http': 'http://proxy-chain.intel.com:911',
                'https': 'http://proxy-chain.intel.com:912'}
-    url = 'https://api.github.com/repos/maheedhararao/python/commits'
-    data = requests.get(url=url, proxies=proxies)
-    latest_commit_url = data.json()[0]['url']
-    latest_data = requests.get(url=latest_commit_url, proxies=proxies)
+    url = 'https://api.github.com/repos/maheedhararao/python/commits/{}'.format(sys.argv[-1])
+    #url = 'https://api.github.com/repos/maheedhararao/python/commits'
+    #data = requests.get(url=url, proxies=proxies)
+    #latest_commit_url = data.json()[0]['url']
+    #latest_data = requests.get(url=latest_commit_url, proxies=proxies)
+    latest_data = requests.get(url=url, proxies=proxies)
     files = latest_data.json()['files']
     # directories = []
     # files_changed = []
