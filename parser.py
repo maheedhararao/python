@@ -1,3 +1,5 @@
+import time
+
 import requests, os, json, subprocess, sys
 
 
@@ -25,6 +27,7 @@ def commit_details():
 
 def trigger_tests():
     info = commit_details()
+    print info
     if len(info.keys()) == 0:
         print('The changes are not made to Source directory. Hence doing nothing.')
         sys.exit()
@@ -38,7 +41,10 @@ def trigger_tests():
 
     for key in info.keys():
         if key in data['source_directories']:
-            unit_test_folders_to_run[data['test_directories'][key]] = info[key]
+            if data['test_directories'][key] not in unit_test_folders_to_run:
+                unit_test_folders_to_run[data['test_directories'][key]] = info[key]
+            else:
+                unit_test_folders_to_run[data['test_directories'][key]].extend(info[key])
 
     print(unit_test_folders_to_run)
 
@@ -47,8 +53,9 @@ def trigger_tests():
 
     for key in unit_test_folders_to_run.keys():
         for each in unit_test_folders_to_run[key]:
-            cmd = 'pytest ' + unit_test_path + key + '\\' + ' -m {}'.format(each)
+            cmd = 'pytest ' + unit_test_path + key + '\\' + ' -s -m {}'.format(each)
             print cmd
+            time.sleep(3)
             subprocess.Popen(args=cmd, shell=True).communicate()
 
 
