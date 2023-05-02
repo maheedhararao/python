@@ -55,7 +55,7 @@ def trigger_tests():
 
     for key in unit_test_folders_to_run.keys():
         for each in unit_test_folders_to_run[key]:
-            cmd = 'pytest ' + unit_test_path + key + '/' + ' -m {}'.format(each) + ' --html=log_{}.html '\
+            cmd = 'pytest ' + unit_test_path + key + '/' + ' -m {}'.format(each) + ' --html=/home/remlab/Desktop/demo/logs/log_{}.html '\
                                                                                     '--self-contained-html -s ' \
                                                                                     '--capture=fd'.format(each)
             print cmd
