@@ -9,19 +9,23 @@ def commit_details():
     latest_commit_url = data.json()[0]['url']
     latest_data = requests.get(url=latest_commit_url, proxies=proxies)
     files = latest_data.json()['files']
-    directories = []
+    # directories = []
+    # files_changed = []
+    info = {}
     for each in files:
         names = each['filename'].strip().split('/')
         if 'source_directory' in names:
-            if names[-2] not in directories:
-                directories.append(names[-2])
-    return directories
+            if names[-2] not in info.keys():
+                info[names[-2]] = [names[-1].split('.')[0]]
+            else:
+                info[names[-2]].append(names[-1].split('.')[0])
+
+    return info
 
 
 def trigger_tests():
-    directories = commit_details()
-    print directories
-    if len(directories) == 0:
+    info = commit_details()
+    if len(info.keys()) == 0:
         print('The changes are not made to Source directory. Hence doing nothing.')
         sys.exit()
 
@@ -30,19 +34,22 @@ def trigger_tests():
     f = open(test_files_path)
     data = json.load(f)
     print(data)
-    unit_test_folders_to_run = []
-    for dir in directories:
-        if dir in data['source_directories']:
-            unit_test_folders_to_run.append(data['test_directories']['{}'.format(dir)])
-    print unit_test_folders_to_run
+    unit_test_folders_to_run = {}
 
-    unit_test_path = os.getcwd() + "//unit_test//"
-    cmd = 'python ' + unit_test_path
-    for test_dir in unit_test_folders_to_run:
-        files = os.listdir(unit_test_path+test_dir)
-        for each in files:
-            output = subprocess.check_output(cmd + test_dir + '//' + each, shell=True)
-            print(output)
+    for key in info.keys():
+        if key in data['source_directories']:
+            unit_test_folders_to_run[data['test_directories'][key]] = info[key]
+
+    print(unit_test_folders_to_run)
+
+    unit_test_path = os.getcwd() + "\\unit_test\\"
+    print unit_test_path
+
+    for key in unit_test_folders_to_run.keys():
+        for each in unit_test_folders_to_run[key]:
+            cmd = 'pytest ' + unit_test_path + key + '\\' + ' -m {}'.format(each)
+            print cmd
+            subprocess.Popen(args=cmd, shell=True).communicate()
 
 
 trigger_tests()
