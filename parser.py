@@ -55,7 +55,7 @@ def trigger_tests():
         for each in unit_test_folders_to_run[key]:
             cmd = 'pytest ' + unit_test_path + key + '\\' + ' -s -m {}'.format(each)
             print cmd
-            time.sleep(3)
+            time.sleep(4)
             subprocess.Popen(args=cmd, shell=True).communicate()
 
 
